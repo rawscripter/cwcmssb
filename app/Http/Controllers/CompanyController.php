@@ -14,9 +14,9 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        // $companies = Company::orderBy('name')->get();
-        // return view('admin.companies.index',compact('companies'));
-        return view('admin.companies.index');
+        $companies = Company::orderBy('name')->get();
+        return view('admin.companies.index',compact('companies'));
+        // return view('admin.companies.index');
     }
 
     /**
@@ -37,7 +37,18 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         try{
+            $data = $request->validate([
+                'name' => 'required',
+                'reg_no' => 'required',
+                'slug' => 'required',
+            ]);
+            Company::create($data);
+            return redirect()->route('companies.index')->withSuccess('Company created successfully');
+        }catch(\Exception $e){
+            return redirect()->route('companies.index')->withError('Request failed.');
+        }
+
     }
 
     /**
@@ -82,6 +93,11 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+        try{
+             $company->delete();
+            return redirect()->route('companies.index')->withSuccess('Company deleted successfully');
+        }catch(\Exception $e){
+            return redirect()->route('companies.index')->withError('Request failed.');
+        }
     }
 }

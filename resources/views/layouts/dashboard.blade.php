@@ -49,12 +49,25 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
+            <hr class="sidebar-divider my-0">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('companies.index') }}">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Companies</span></a>
+            </li>
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('companies.index') }}">
+
+                    <i class="fas fa-fw fa-file-pdf"></i>
+                    <span>PDFS</span></a>
+            </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
+            {{-- <div class="sidebar-heading">
                 Compnaies
             </div>
 
@@ -73,10 +86,10 @@
                         <a class="collapse-item" href="{{ route('companies.index') }}">View All</a>
                     </div>
                 </div>
-            </li>
+            </li> --}}
 
             <!-- Heading -->
-            <div class="sidebar-heading">
+            {{-- <div class="sidebar-heading">
                 PDFS
             </div>
 
@@ -95,7 +108,7 @@
                         <a class="collapse-item" href="cards.html">View All</a>
                     </div>
                 </div>
-            </li>
+            </li> --}}
 
         </ul>
         <!-- End of Sidebar -->
@@ -256,6 +269,9 @@
 
     <script src="{{ asset('assets/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/js/demo/datatables-demo.js') }}"></script>
+
+    @yield('script')
+
 </body>
 
 </html>
