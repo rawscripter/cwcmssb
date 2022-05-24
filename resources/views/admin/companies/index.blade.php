@@ -51,7 +51,8 @@
                                 <td>{{ $company->slug }}</td>
                                 <td>{{ $company->reg_no }}</td>
                                 <td class="d-flex align-items-center justify-content-start">
-                                    <a href="#" class="btn btn-sm btn-primary mr-2">Edit</a>
+                                    <a href="{{ route('companies.edit', $company->id) }}"
+                                        class="btn btn-sm btn-primary mr-2">Details</a>
                                     <form method="POST" action="{{ route('companies.destroy', $company->id) }}"
                                         class="d-flex align-items-center justify-content-center">
                                         {{ csrf_field() }}

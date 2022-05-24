@@ -15,7 +15,7 @@ class CompanyController extends Controller
     public function index()
     {
         $companies = Company::orderBy('name')->get();
-        return view('admin.companies.index',compact('companies'));
+        return view('admin.companies.index', compact('companies'));
         // return view('admin.companies.index');
     }
 
@@ -37,7 +37,7 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-         try{
+        try {
             $data = $request->validate([
                 'name' => 'required',
                 'reg_no' => 'required',
@@ -45,10 +45,9 @@ class CompanyController extends Controller
             ]);
             Company::create($data);
             return redirect()->route('companies.index')->withSuccess('Company created successfully');
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             return redirect()->route('companies.index')->withError('Request failed.');
         }
-
     }
 
     /**
@@ -71,6 +70,7 @@ class CompanyController extends Controller
     public function edit(Company $company)
     {
         //
+        return view('admin.companies.edit', compact('company'));
     }
 
     /**
@@ -82,7 +82,17 @@ class CompanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-        //
+        try {
+            $data = $request->validate([
+                'name' => 'required',
+                'reg_no' => 'required',
+                'slug' => 'required',
+            ]);
+            $company->update($data);
+            return redirect()->route('companies.edit', $company->id)->withSuccess('Company updated successfully');
+        } catch (\Exception $e) {
+            return redirect()->route('companies.edit', $company->id)->withError('Request failed.');
+        }
     }
 
     /**
@@ -93,10 +103,10 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        try{
-             $company->delete();
+        try {
+            $company->delete();
             return redirect()->route('companies.index')->withSuccess('Company deleted successfully');
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             return redirect()->route('companies.index')->withError('Request failed.');
         }
     }

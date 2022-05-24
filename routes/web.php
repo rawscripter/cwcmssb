@@ -22,4 +22,5 @@ Route::group([
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('companies', App\Http\Controllers\CompanyController::class);
+    Route::resource('events', App\Http\Controllers\CompanyEventController::class);
 });

@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Company extends Model
 {
     use HasFactory;
-    protected $fillable = ['name','reg_no','slug'];
+    protected $fillable = ['name', 'reg_no', 'slug'];
+
+    public function events()
+    {
+        return $this->hasMany(CompanyEvent::class);
+    }
 }
