@@ -32,6 +32,7 @@
                             <th>Name</th>
                             <th>Slug</th>
                             <th>Registration No</th>
+                            <th>Total Events</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -40,6 +41,7 @@
                             <th>Name</th>
                             <th>Slug</th>
                             <th>Registration No</th>
+                            <th>Total Events</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -50,6 +52,7 @@
                                 <td>{{ $company->name }}</td>
                                 <td>{{ $company->slug }}</td>
                                 <td>{{ $company->reg_no }}</td>
+                                <td>{{ $company->events->count() }}</td>
                                 <td class="d-flex align-items-center justify-content-start">
                                     <a href="{{ route('companies.edit', $company->id) }}"
                                         class="btn btn-sm btn-primary mr-2">Details</a>

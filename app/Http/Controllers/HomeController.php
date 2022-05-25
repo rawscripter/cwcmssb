@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
+use App\Models\EventsPdf;
+use App\Models\CompanyEvent;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard.index');
+        $totalComapny = Company::count();
+        $totalCompanyEvent = CompanyEvent::count();
+        $totalCompanyEventPdf = EventsPdf::count();
+        return view('admin.dashboard.index', compact('totalComapny', 'totalCompanyEvent', 'totalCompanyEventPdf'));
     }
 }

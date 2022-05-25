@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CompanyEvent;
+use App\Models\Company;
 use Illuminate\Http\Request;
 
 class CompanyEventController extends Controller
@@ -14,7 +15,14 @@ class CompanyEventController extends Controller
      */
     public function index()
     {
-        //
+        $companies = Company::all();
+        $query = CompanyEvent::query();
+        $query->whereHas('pdfs', function ($query) {
+            $query->where('file', '!=', null);
+        });
+
+        $eventsWithPdf = $query->orderBy('name')->get();
+        return view('admin.events.index', compact('companies', 'eventsWithPdf'));
     }
 
     /**
@@ -56,7 +64,7 @@ class CompanyEventController extends Controller
      */
     public function show(CompanyEvent $companyEvent)
     {
-        //
+        return view('admin.events.edit', compact('companyEvent'));
     }
 
     /**

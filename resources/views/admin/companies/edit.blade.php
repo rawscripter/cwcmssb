@@ -184,7 +184,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="">Page Description</label>
-                                    <textarea name="" class="form-control" id="" cols="30" rows="10"></textarea>
+                                    <textarea id="myeditorinstance" name="" class="form-control" id="" cols="30" rows="10"></textarea>
                                 </div>
                             </div>
                         </div>

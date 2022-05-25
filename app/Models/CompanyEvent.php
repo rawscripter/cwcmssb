@@ -19,4 +19,14 @@ class CompanyEvent extends Model
     {
         return $this->belongsTo(Company::class);
     }
+
+    public function pdfs()
+    {
+        return $this->hasMany(EventsPdf::class, 'company_event_id');
+    }
+
+    public function fullUrl()
+    {
+        return config('app.url') . '/' . $this->company->slug . '/' . $this->slug;
+    }
 }

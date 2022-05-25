@@ -110,4 +110,10 @@ class CompanyController extends Controller
             return redirect()->route('companies.index')->withError('Request failed.');
         }
     }
+
+    public function events(Company $company)
+    {
+        $events = $company->events;
+        return response()->json($events);
+    }
 }
