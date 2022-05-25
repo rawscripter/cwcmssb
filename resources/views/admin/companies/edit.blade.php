@@ -73,6 +73,7 @@
                         <tr>
                             <th>Event Name</th>
                             <th>Slug</th>
+                            <th>Url</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -80,6 +81,7 @@
                         <tr>
                             <th>Name</th>
                             <th>Slug</th>
+                            <th>Url</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -89,6 +91,7 @@
                             <tr>
                                 <td>{{ $event->name }}</td>
                                 <td>{{ $event->slug }}</td>
+                                <td>{{ config('app.url') }}/{{ $company->slug }}/{{ $event->slug }}</td>
                                 <td class="d-flex align-items-center justify-content-start">
                                     <form method="POST" action="{{ route('events.destroy', $event->id) }}"
                                         class="d-flex align-items-center justify-content-center">
