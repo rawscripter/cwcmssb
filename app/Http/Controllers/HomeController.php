@@ -31,4 +31,24 @@ class HomeController extends Controller
         $totalCompanyEventPdf = EventsPdf::count();
         return view('admin.dashboard.index', compact('totalComapny', 'totalCompanyEvent', 'totalCompanyEventPdf'));
     }
+
+    public function showCompanyEvent($company, $event)
+    {
+        $comapny = Company::where('slug', $company)->first();
+
+        if (!$comapny) {
+            abort(404);
+        }
+
+        $event = CompanyEvent::where('slug', $event)->first();
+
+        if (!$event) {
+            abort(404);
+        }
+
+        $pdfs = EventsPdf::where('company_event_id', $event->id)->orderBy('year', 'desc')->get();
+        $years  = $pdfs->pluck('year')->unique();
+
+        return view('public.index', compact('comapny', 'event', 'pdfs', 'years'));
+    }
 }

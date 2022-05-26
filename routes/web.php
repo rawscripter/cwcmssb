@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,3 +30,17 @@ Route::group([
     Route::delete('/events/{pdf}/delete', [App\Http\Controllers\EventsPdfController::class, 'destroy'])->name('eventPdf.destroy');
     Route::get('/events/{companyEvent}/pdfs', [App\Http\Controllers\CompanyEventController::class, 'show'])->name('events.pdfs');
 });
+
+
+
+Route::get('files/{file_name}', function ($file_name = null) {
+    $path = storage_path() . '/' . 'app' . '/files/' . $file_name;
+    if (file_exists($path)) {
+        return 'ok';
+        return Response::download($path);
+    }
+});
+
+
+// for public users
+Route::get('/{company}/{companyEvent}', [App\Http\Controllers\HomeController::class, 'showCompanyEvent'])->name('company.event');

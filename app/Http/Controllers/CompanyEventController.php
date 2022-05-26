@@ -22,6 +22,7 @@ class CompanyEventController extends Controller
         });
 
         $eventsWithPdf = $query->orderBy('name')->get();
+
         return view('admin.events.index', compact('companies', 'eventsWithPdf'));
     }
 
@@ -44,11 +45,14 @@ class CompanyEventController extends Controller
     public function store(Request $request)
     {
         try {
-            $data = $request->validate([
-                'company_id' => 'required',
-                'name' => 'required',
-                'slug' => 'required',
-            ]);
+            // $data = $request->validate([
+            //     'company_id' => 'required',
+            //     'name' => 'required',
+            //     'slug' => 'required',
+            //     'description' => 'required',
+            // ]);
+
+            $data  = $request->all();
             CompanyEvent::create($data);
             return redirect()->route('companies.edit', $request->company_id)->withSuccess('Company event created successfully');
         } catch (\Exception $e) {
@@ -73,9 +77,10 @@ class CompanyEventController extends Controller
      * @param  \App\Models\CompanyEvent  $companyEvent
      * @return \Illuminate\Http\Response
      */
-    public function edit(CompanyEvent $companyEvent)
+    public function edit($companyEvent)
     {
-        //
+        $companyEvent = CompanyEvent::find($companyEvent);
+        return view('admin.events.event-edit', compact('companyEvent'));
     }
 
     /**
@@ -85,9 +90,17 @@ class CompanyEventController extends Controller
      * @param  \App\Models\CompanyEvent  $companyEvent
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CompanyEvent $companyEvent)
+    public function update($companyEvent, Request $request)
     {
-        //
+        try {
+            $companyEvent = CompanyEvent::find($companyEvent);
+            $data = $request->all();
+            $companyEvent->update($data);
+
+            return redirect()->route('companies.edit', $companyEvent->company_id)->withSuccess('Company event updated successfully');
+        } catch (\Exception $e) {
+            return redirect()->route('companies.edit', $companyEvent->company_id)->withError('Request failed.');
+        }
     }
 
     /**

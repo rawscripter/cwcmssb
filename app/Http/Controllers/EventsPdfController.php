@@ -26,7 +26,7 @@ class EventsPdfController extends Controller
             $pdfs = $request->file('pdfs');
             foreach ($pdfs as $pdf) {
                 $fileName = time() . '-' .  $pdf->getClientOriginalName();
-                $pdf->storeAs('pdf', $fileName);
+                $pdf->storeAs('pubic/pdf', $fileName);
                 //  save pdfs to database
                 $pdfData = [
                     'company_id' => $comapnyID,
@@ -56,7 +56,7 @@ class EventsPdfController extends Controller
             $pdfs = $request->file('pdfs');
             foreach ($pdfs as $pdf) {
                 $fileName = time() . '-' .  $pdf->getClientOriginalName();
-                $pdf->storeAs('pdf', $fileName);
+                $pdf->storeAs('public/pdf', $fileName);
                 //  save pdfs to database
                 $pdfData = [
                     'company_id' =>  $event->company->id,

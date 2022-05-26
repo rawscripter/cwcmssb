@@ -93,6 +93,10 @@
                                 <td>{{ $event->slug }}</td>
                                 <td>{{ config('app.url') }}/{{ $company->slug }}/{{ $event->slug }}</td>
                                 <td class="d-flex align-items-center justify-content-start">
+                                    <div class="mr-3">
+                                        <a href="{{ route('events.edit', $event->id) }}"
+                                            class="btn btn-sm btn-primary">Edit</a>
+                                    </div>
                                     <form method="POST" action="{{ route('events.destroy', $event->id) }}"
                                         class="d-flex align-items-center justify-content-center">
                                         {{ csrf_field() }}
@@ -184,7 +188,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="">Page Description</label>
-                                    <textarea id="myeditorinstance" name="" class="form-control" id="" cols="30" rows="10"></textarea>
+                                    <textarea id="myeditorinstance" name="description" class="form-control" id="" cols="30" rows="10"></textarea>
                                 </div>
                             </div>
                         </div>
