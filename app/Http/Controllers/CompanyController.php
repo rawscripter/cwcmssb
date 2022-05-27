@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\EventsPdf;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -104,6 +105,13 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         try {
+            // delete company events
+            if ($company->events) {
+                foreach ($company->events as $event) {
+                    EventsPdf::where('company_event_id', $event->id)->delete();
+                    $event->delete();
+                }
+            }
             $company->delete();
             return redirect()->route('companies.index')->withSuccess('Company deleted successfully');
         } catch (\Exception $e) {

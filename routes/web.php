@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,13 +36,14 @@ Route::group([
 });
 
 
-
-Route::get('files/{file_name}', function ($file_name = null) {
-    $path = storage_path() . '/' . 'app' . '/files/' . $file_name;
-    if (file_exists($path)) {
-        return 'ok';
-        return Response::download($path);
-    }
+Route::get('/clear-cache', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+    Artisan::call('route:clear');
+    Artisan::call('config:clear');
+    Artisan::call('config:cache');
+    Artisan::call('storage:link');
+    return "Cache is cleared";
 });
 
 

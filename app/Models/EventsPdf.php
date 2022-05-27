@@ -14,4 +14,9 @@ class EventsPdf extends Model
         'year',
         'file',
     ];
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
 }

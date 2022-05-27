@@ -26,7 +26,8 @@ class EventsPdfController extends Controller
             $pdfs = $request->file('pdfs');
             foreach ($pdfs as $pdf) {
                 $fileName = time() . '-' .  $pdf->getClientOriginalName();
-                $pdf->storeAs('pubic/pdf', $fileName);
+                // upload pdf to public path
+                $pdf->move(public_path('pdf'), $fileName);
                 //  save pdfs to database
                 $pdfData = [
                     'company_id' => $comapnyID,
@@ -56,7 +57,7 @@ class EventsPdfController extends Controller
             $pdfs = $request->file('pdfs');
             foreach ($pdfs as $pdf) {
                 $fileName = time() . '-' .  $pdf->getClientOriginalName();
-                $pdf->storeAs('public/pdf', $fileName);
+                $pdf->move(public_path('pdf'), $fileName);
                 //  save pdfs to database
                 $pdfData = [
                     'company_id' =>  $event->company->id,

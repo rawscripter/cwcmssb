@@ -132,7 +132,8 @@
 
             <div class="mt-2"> <i class="las la-phone"></i> +03-2274 2181
                 &nbsp; &nbsp;
-                <i class="las la-envelope"></i> cwmgtservices@hotmail.com
+                <i class="las la-envelope"></i> <a style="text-decoration: none; color:inherit"
+                    href="mailto:cwmgtservices@hotmail.com">cwmgtservices@hotmail.com</a>
             </div>
 
         </div>

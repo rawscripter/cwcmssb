@@ -27,8 +27,8 @@ class HomeController extends Controller
     public function index()
     {
         $totalComapny = Company::count();
-        $totalCompanyEvent = CompanyEvent::count();
-        $totalCompanyEventPdf = EventsPdf::count();
+        $totalCompanyEvent = CompanyEvent::whereHas('company')->count();
+        $totalCompanyEventPdf = EventsPdf::whereHas('company')->count();
         return view('admin.dashboard.index', compact('totalComapny', 'totalCompanyEvent', 'totalCompanyEventPdf'));
     }
 

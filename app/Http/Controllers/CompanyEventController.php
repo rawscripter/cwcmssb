@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CompanyEvent;
 use App\Models\Company;
+use App\Models\EventsPdf;
 use Illuminate\Http\Request;
 
 class CompanyEventController extends Controller
@@ -17,6 +18,7 @@ class CompanyEventController extends Controller
     {
         $companies = Company::all();
         $query = CompanyEvent::query();
+        $query->whereHas('company');
         $query->whereHas('pdfs', function ($query) {
             $query->where('file', '!=', null);
         });
@@ -53,6 +55,13 @@ class CompanyEventController extends Controller
             // ]);
 
             $data  = $request->all();
+
+            $isSlugUnique = CompanyEvent::where('slug', $data['slug'])->where('company_id', $data['company_id'])->first();
+
+            if ($isSlugUnique) {
+                return redirect()->back()->withError('Slug already exists for this company');
+            }
+
             CompanyEvent::create($data);
             return redirect()->route('companies.edit', $request->company_id)->withSuccess('Company event created successfully');
         } catch (\Exception $e) {
@@ -113,6 +122,7 @@ class CompanyEventController extends Controller
     {
         try {
             $companyEvent = CompanyEvent::find($event);
+            EventsPdf::where('company_event_id', $event)->delete();
             $comapnyID =   $companyEvent->company_id;
             $companyEvent->delete();
             return redirect()->route('companies.edit', $comapnyID)->withSuccess('Company event deleted successfully');
