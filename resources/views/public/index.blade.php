@@ -53,7 +53,7 @@
                             <div
                                 class=" {{ $pdf->year == $years[0] ? 'show' : 'hide' }} year-pdf-item year-{{ $pdf->year }}">
                                 <div class="mb-3 d-flex justify-content-start text-white align-items-center">
-                                    <a download="{{ $pdf->file }}" href="/storage/pdf/{{ $pdf->file }}"
+                                    <a download="{{ $pdf->file }}" href="/pdf/{{ $pdf->file }}"
                                         class="btn btn-danger r-0 mr-2">
                                         DOWNLOAD PDF
                                     </a>

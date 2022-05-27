@@ -81,7 +81,11 @@
 
                         @foreach ($companyEvent->pdfs as $pdf)
                             <tr>
-                                <td>{{ $pdf->file }}</td>
+                                <td>
+                                    <a target="_blank" href="/pdf/{{ $pdf->file }}">
+                                        {{ $pdf->file }}
+                                    </a>
+                                </td>
                                 <td>{{ $pdf->year }}</td>
                                 <td class="d-flex align-items-center justify-content-start">
                                     <form method="POST" action="{{ route('eventPdf.destroy', $pdf->id) }}"
