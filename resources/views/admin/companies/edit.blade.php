@@ -15,7 +15,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between align-items-center">
-            <h6 class="m-0 font-weight-bold text-primary">Company Events</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Company </h6>
             <div class="card-toolbar">
                 <div class="btn btn-sm btn-primary" data-toggle="modal" data-target="#companyUpdatwModal">
                     Update Company

@@ -1,5 +1,11 @@
 .bg-theme {
-    background: teal !important;
+    background-color: #29B1CC;
+}
+
+* {
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+
 }
 
 .text-white {
@@ -13,6 +19,10 @@
 .top-header {
     padding: 20px 40px;
     height: 101px;
+}
+
+.text-dark {
+    color: #000 !important;
 }
 
 .sidebar {
@@ -54,4 +64,17 @@ li.year-item {
 
 .hide {
     display: none !important;
+}
+
+a {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+body {
+    overflow: hidden;
+}
+
+.main-area {
+    overflow: auto;
 }

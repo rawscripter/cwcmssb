@@ -16,12 +16,15 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
+Route::get('/', [App\Http\Controllers\HomeController::class, function () {
+    return view('home');
+}]);
 
 Route::group([
     'middleware' => ['auth'],
 ], function () {
-    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/custom-logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');
     Route::resource('companies', App\Http\Controllers\CompanyController::class);
     Route::get('/company/{company}/events', [App\Http\Controllers\CompanyController::class, 'events'])->name('companies.events');
     Route::resource('events', App\Http\Controllers\CompanyEventController::class);

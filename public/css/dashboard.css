@@ -1,0 +1,11 @@
+a {
+    text-decoration: none !important;
+}
+
+.tox-notification.tox-notification--in.tox-notification--warning {
+    display: none !important;
+}
+
+.tox.tox-tinymce {
+    min-height: 400px !important;
+}
