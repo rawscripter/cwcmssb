@@ -25,6 +25,8 @@ Route::group([
     'middleware' => ['auth'],
 ], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
+    Route::post('/profile', [App\Http\Controllers\HomeController::class, 'profileUpdate'])->name('profile.update');
     Route::get('/custom-logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');
     Route::resource('companies', App\Http\Controllers\CompanyController::class);
     Route::get('/company/{company}/events', [App\Http\Controllers\CompanyController::class, 'events'])->name('companies.events');

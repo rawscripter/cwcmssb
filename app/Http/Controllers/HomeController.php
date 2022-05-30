@@ -6,6 +6,7 @@ use App\Models\Company;
 use App\Models\EventsPdf;
 use App\Models\CompanyEvent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -55,5 +56,28 @@ class HomeController extends Controller
     {
         auth()->logout();
         return redirect()->route('login');
+    }
+    public function profile()
+    {
+        $user = auth()->user();
+        return view('admin.profile.index', compact('user'));
+    }
+
+    public function profileUpdate(Request $request)
+    {
+        $user = auth()->user();
+        $data['name'] = $request->name;
+        $data['email'] = $request->email;
+
+        if ($request->password) {
+            if ($request->password != $request->password_confirmation) {
+                return redirect()->back()->with('error', 'Password and Confirm Password does not match');
+            } else {
+                $data['password'] = Hash::make($request->password);
+            }
+        }
+        $user->update($data);
+
+        return redirect()->back()->with('success', 'Profile updated successfully');
     }
 }
