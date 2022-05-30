@@ -8,6 +8,10 @@
 
 }
 
+body {
+    overflow: hidden;
+}
+
 .text-white {
     color: #fff !important;
 }
@@ -31,6 +35,11 @@
     height: calc(100vh - 110px);
 }
 
+.main-area {
+    height: calc(100vh - 110px);
+    overflow: auto;
+}
+
 .list-style-none {
     list-style: none;
 }
@@ -47,7 +56,7 @@ li.year-item {
 
 .main-area {
     padding-top: 40px;
-    max-width: 80%;
+    max-width: 100%;
 }
 
 .r-0 {
@@ -69,12 +78,4 @@ li.year-item {
 a {
     text-decoration: none !important;
     color: inherit !important;
-}
-
-body {
-    overflow: hidden;
-}
-
-.main-area {
-    overflow: auto;
 }
