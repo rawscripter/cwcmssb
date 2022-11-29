@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CompanyEvent;
 use App\Models\EventsPdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class EventsPdfController extends Controller
 {
@@ -80,12 +81,11 @@ class EventsPdfController extends Controller
         try {
             $pdf = EventsPdf::find($pdf);
 
-            /// check file exists
-            if (file_exists(storage_path('app/pdf/' . $pdf->file))) {
-                unlink(storage_path('app/pdf/' . $pdf->file));
+            $file_path = public_path('pdf') . '/' . $pdf->file;
+            if (File::exists($file_path)) {
+                File::delete($file_path); //for deleting only file try this
+                $pdf->delete(); //for deleting record and file try both
             }
-
-            $pdf->delete();
             return redirect()->back()->withSuccess('Pdf deleted successfully');
         } catch (\Exception $e) {
             return redirect()->back()->withError('Request failed.');

@@ -41,7 +41,7 @@ class HomeController extends Controller
             abort(404);
         }
 
-        $event = CompanyEvent::where('slug', $event)->first();
+        $event = CompanyEvent::where('company_id', $comapny->id)->where('slug', $event)->first();
 
         if (!$event) {
             abort(404);
